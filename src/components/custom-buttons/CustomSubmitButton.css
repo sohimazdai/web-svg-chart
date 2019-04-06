@@ -1,0 +1,7 @@
+.custom-submit-button {
+    border-radius: 5px;
+    height: 30px;
+    font-size: 16px;
+
+    outline-color: transparent;
+}

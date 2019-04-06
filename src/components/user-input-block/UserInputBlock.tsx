@@ -1,77 +1,33 @@
 import React, { Component } from 'react';
 import './UserInputBlock.css'
-import { List } from '../notes/List';
-import { notes } from '../../data/notes';
+import { CustomUserInput } from '../custom-inputs/CustomUserInput';
+import { CustomSubmitButton } from '../custom-buttons/CustomSubmitButton';
+import { LisaComponentState } from '../lisa-component/LisaComponent';
 
-export interface Note {
-  glucose: string;
-  bread: string;
-  insulin: string;
+export interface UserInputBlockProps {
+    onGlucoseInputValueChange(value: string): void;
+    onBreadInputValueChange(value: string): void;
+    onInsulinInputValueChange(value: string): void;
+    onSaveClick(): void;
+    parentState: LisaComponentState;
 }
 
-interface UserInputBlockState {
-  glucose: string;
-  bread: string;
-  insulin: string;
-  notes: Note[],
-}
-
-export class UserInputBlock extends React.Component<any, UserInputBlockState> {
-  constructor(props: any){
-    super(props);
-    this.state = {
-      glucose: '',
-      bread: '',
-      insulin: '',
-      notes: notes,
-    }
-  }
-
-
-  componentDidUpdate(){
-    console.log(this.state.notes)
-  }
+export class UserInputBlock extends React.Component<UserInputBlockProps, any> {
   render() {
-    const { glucose, insulin, bread, notes } = this.state;
+    const { glucose, bread, insulin } = this.props.parentState;
+    const {
+        onGlucoseInputValueChange,
+        onBreadInputValueChange,
+        onInsulinInputValueChange,
+        onSaveClick
+    } = this.props;
+
     return <div className={'user-input-block'}>
       <p>There Is UserInputBlock</p>
-      <input type='number' value={glucose} onChange={(e) => this.onGlucoseInputValueChange(e.target.value)}/>
-      <input type='number' value={bread} onChange={(e) => this.onBreadInputValueChange(e.target.value)}/>
-      <input type='number' value={insulin} onChange={(e) => this.onInsulinInputValueChange(e.target.value)}/>
-      <button onClick={this.onSaveClick}>press to save</button>
-      <List notes={notes}/>
+      Glucose: <CustomUserInput inputType='number' inputValue={glucose} onChange={onGlucoseInputValueChange} />
+      Bread: <CustomUserInput inputType='number' inputValue={bread} onChange={onBreadInputValueChange}/>
+      Insulin: <CustomUserInput inputType='number' inputValue={insulin} onChange={onInsulinInputValueChange}/>
+      <CustomSubmitButton onClick={onSaveClick} buttonTitle='Press to save' />
     </div>
-  }
-
-  private onGlucoseInputValueChange = (str: string) => {
-    this.setState({
-      glucose: str,
-    })
-  }
-
-  private onBreadInputValueChange = (str: string) => {
-    this.setState({
-      bread: str,
-    })
-  }
-
-  private onInsulinInputValueChange = (str: string) => {
-    this.setState({
-      insulin: str,
-    })
-  }
-
-  private onSaveClick = () => {
-    const { glucose, insulin, bread, notes } = this.state;
-    this.setState({
-      notes: [{
-        glucose: glucose,
-        bread: bread,
-        insulin: insulin,
-      }, ...notes],
-      glucose: '',
-      insulin: '',
-      bread: '',
-    })
   }
 }
