@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './List.css'
-import { Note } from '../user-input-block/UserInputBlock';
+import { Note } from '../lisa-component/LisaComponent';
 import { NoteComponent } from './NoteComponent';
 
 export interface ListProps {

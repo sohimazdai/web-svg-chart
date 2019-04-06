@@ -1,0 +1,7 @@
+.custom-user-input {
+    padding: 4px;
+    border: 1px solid #cecece;
+    border-radius: 5px;
+    outline-color: transparent;
+    font-size: 16px;
+}
