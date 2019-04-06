@@ -1,12 +1,28 @@
 import React, { Component } from 'react';
 import './UserInputBlock.css'
 
-export class UserInputBlock extends Component {
-  state = {
-    glucose: '',
-    bread: '',
-    insulin: '',
-    notes: [],
+export interface Note {
+  glucose: string;
+  bread: string;
+  insulin: string;
+}
+
+interface UserInputBlockState {
+  glucose: string;
+  bread: string;
+  insulin: string;
+  notes: Note[],
+}
+
+export class UserInputBlock extends React.Component<any, UserInputBlockState> {
+  constructor(props: any){
+    super(props);
+    this.state = {
+      glucose: '',
+      bread: '',
+      insulin: '',
+      notes: [],
+    }
   }
 
 
@@ -21,6 +37,11 @@ export class UserInputBlock extends Component {
       <input type='number' value={bread} onChange={(e) => this.onBreadInputValueChange(e.target.value)}/>
       <input type='number' value={insulin} onChange={(e) => this.onInsulinInputValueChange(e.target.value)}/>
       <button onClick={this.onSaveClick}>press to save</button>
+      {notes.map((item: Note) => <div>
+            g: {item.glucose}
+            b: {item.bread}
+            i: {item.insulin}
+        </div>)}
     </div>
   }
 

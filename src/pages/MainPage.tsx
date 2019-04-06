@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { UserInputBlock } from '../components/UserInputBlock';
+import { UserInputBlock } from '../components/user-input-block/UserInputBlock';
 
 export class MainPage extends Component {
   render() {
