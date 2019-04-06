@@ -1,0 +1,17 @@
+.note-component {
+    margin: 10px 20px;
+    padding: 5px 10px;
+
+    border: 1px solid transparent;
+    border-radius: 5px;
+}
+
+.alert {
+    background-color: #ffece8;
+    /* border-color: tomato */
+}
+
+.good {
+    background-color: #d8ffdf;
+    /* border-color: aquamarine */
+}
