@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './UserInputBlock.css'
+import { List } from '../notes/List';
+import { notes } from '../../data/notes';
 
 export interface Note {
   glucose: string;
@@ -21,7 +23,7 @@ export class UserInputBlock extends React.Component<any, UserInputBlockState> {
       glucose: '',
       bread: '',
       insulin: '',
-      notes: [],
+      notes: notes,
     }
   }
 
@@ -37,11 +39,7 @@ export class UserInputBlock extends React.Component<any, UserInputBlockState> {
       <input type='number' value={bread} onChange={(e) => this.onBreadInputValueChange(e.target.value)}/>
       <input type='number' value={insulin} onChange={(e) => this.onInsulinInputValueChange(e.target.value)}/>
       <button onClick={this.onSaveClick}>press to save</button>
-      {notes.map((item: Note) => <div>
-            g: {item.glucose}
-            b: {item.bread}
-            i: {item.insulin}
-        </div>)}
+      <List notes={notes}/>
     </div>
   }
 
