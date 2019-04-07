@@ -30,7 +30,6 @@ export class LisaComponent extends React.Component<any, LisaComponentState> {
     }
   }
 
-
   componentDidUpdate(){
     console.log(this.state.notes)
   }
