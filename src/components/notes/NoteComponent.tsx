@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './NoteComponent.css'
-import { Note } from '../lisa-component/LisaComponent';
 import { CustomNoteRow } from './CustomNoteRow';
+import { Note } from '../../interfaces/Notes';
 
 export interface NoteComponentProps {
     note: Note;

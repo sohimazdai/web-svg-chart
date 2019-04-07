@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './List.css'
-import { Note } from '../lisa-component/LisaComponent';
 import { NoteComponent } from './NoteComponent';
+import { Note } from '../../interfaces/Notes';
 
 export interface ListProps {
     notes: Note[]

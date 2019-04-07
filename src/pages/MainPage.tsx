@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { LisaComponent } from '../components/lisa-component/LisaComponent';
+import UserDataDisplayBlockComponent from '../components/user-data-display-block-component/UserDataDisplayBlockComponent';
 
 export class MainPage extends Component {
   render() {
     return <div>
       <p>There is MainPage</p>
-      <LisaComponent />
+      <UserDataDisplayBlockComponent />
     </div>
   }
 }
