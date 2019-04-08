@@ -7,3 +7,10 @@ export function addNoteToList(notes: Note[]) {
     payload: notes,
   }
 }
+
+export function selectNote(id: number) {
+  return {
+    type: Constants.SELECT_NOTE,
+    payload: id,
+  }
+}

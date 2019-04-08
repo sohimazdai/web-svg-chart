@@ -4,6 +4,8 @@
 
     border: 1px solid transparent;
     border-radius: 5px;
+
+    flex-direction: row;
 }
 
 .alert {
@@ -14,4 +16,20 @@
 .good {
     background-color: #d8ffdf;
     /* border-color: aquamarine */
+}
+
+.selected {
+    /* background-color: white; */
+    border: 2px solid purple;
+}
+
+.note-component_left-column {
+    display: inline;
+    flex-direction: column;
+
+}
+
+.note-component_right-column {
+    display: inline;
+    flex-direction: column;
 }

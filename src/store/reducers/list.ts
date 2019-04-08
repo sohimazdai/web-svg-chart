@@ -3,7 +3,8 @@ import { ActionWithPayLoad } from '../../interfaces/Redux';
 import { Constants } from '../actions/constants';
 
 export const initialNotesState = {
-    notes: notes
+    notes: notes,
+    selected: undefined,
 }
 
 export const notesReducer = (state = initialNotesState, action: ActionWithPayLoad) => {
@@ -12,7 +13,13 @@ export const notesReducer = (state = initialNotesState, action: ActionWithPayLoa
             return {
                 ...state,
                 notes: action.payload
-            }
+            };
+
+        case Constants.SELECT_NOTE:
+            return {
+                ...state,
+                selected: action.payload
+            };
 
         default:
             return state;

@@ -6,7 +6,7 @@ import { UserInputBlock } from '../user-input-block/UserInputBlock';
 import { Note } from '../../interfaces/Notes';
 import { connect } from 'react-redux';
 import { INotesState, IState, IUserState } from '../../store/state/state';
-import { addNoteToList } from '../../store/actions/list';
+import { addNoteToList, selectNote } from '../../store/actions/list';
 import { DispatchWithPayload, ActionWithPayLoad } from '../../interfaces/Redux';
 
 export interface UserDataDisplayBlockComponentState {
@@ -17,8 +17,10 @@ export interface UserDataDisplayBlockComponentState {
 
 export interface UserDataDisplayBlockComponentProps {
     notes: Note[],
+    selected: number,
     user?: any,
     addNoteToList: (notes: Note[]) => void,
+    selectNote: (id: number) => void,
 }
 
 export class UserDataDisplayBlockComponent extends React.Component
@@ -33,7 +35,7 @@ export class UserDataDisplayBlockComponent extends React.Component
   }
 
   render() {
-    const { notes } = this.props;
+    const { notes, selected, selectNote } = this.props;
     return <div className={'user-data-display-block-component'}>
       <p>There Is LisaComponent</p>
       <UserInputBlock
@@ -43,7 +45,7 @@ export class UserDataDisplayBlockComponent extends React.Component
         onInsulinInputValueChange={this.onInsulinInputValueChange}
         onSaveClick={this.onSaveClick}
       />
-      <List notes={notes}/>
+      <List notes={notes} selected={selected} onSelect={selectNote}/>
     </div>
   }
 
@@ -85,13 +87,15 @@ export class UserDataDisplayBlockComponent extends React.Component
 const mapStateToProps = (store: IState) => {
     console.log(store)
     return {
-        notes: store.list.notes
+        notes: store.list.notes,
+        selected: store.list.selected,
     }
 }
 
 const mapDispatchToProps = (dispatch: DispatchWithPayload<ActionWithPayLoad>) => {
   return {
     addNoteToList: (notes: Note[]) => dispatch(addNoteToList(notes)),
+    selectNote: (id: number) => dispatch(selectNote(id)),
   }
 }
 export default connect(

@@ -1,7 +1,8 @@
 import { Note } from "../../interfaces/Notes";
 
 export interface INotesState {
-    notes: Note[]
+    notes: Note[],
+    selected: number,
 }
 
 export interface IUserState {
