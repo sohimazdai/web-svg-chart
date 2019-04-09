@@ -1,20 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './List.css'
 import { NoteComponent } from './NoteComponent';
 import { Note } from '../../interfaces/Notes';
-import { selectNote } from '../../store/actions/list';
-import { any } from 'prop-types';
 
 export interface ListProps {
     notes: Note[],
     onSelect:(id: number) => any,
     selected: number,
+    onEditClick: () => void,
 }
 
 export class List extends React.Component<ListProps>{
 
   render() {
-    const { notes, onSelect, selected } = this.props;
+    const { notes, onSelect, selected, onEditClick } = this.props;
     return <div className={'list'}>
       {notes.map((note: Note, index: number) =>
           <NoteComponent
@@ -23,6 +22,7 @@ export class List extends React.Component<ListProps>{
               note={note}
               onSelect={onSelect}
               isSelected={selected == index}
+              onEditClick={onEditClick}
           />)}
     </div>
   }
