@@ -10,6 +10,7 @@ export interface UserInputBlockProps {
     onInsulinInputValueChange(value: string): void;
     onSaveClick(): void;
     parentState: UserDataDisplayBlockComponentState;
+    isEditingMode: boolean;
 };
 
 export class UserInputBlock extends React.Component<UserInputBlockProps, any> {
@@ -19,15 +20,18 @@ export class UserInputBlock extends React.Component<UserInputBlockProps, any> {
             onGlucoseInputValueChange,
             onBreadInputValueChange,
             onInsulinInputValueChange,
-            onSaveClick
+            onSaveClick,
+            isEditingMode,
         } = this.props;
+
+        const buttonTitle = isEditingMode ? 'Save changes' : 'Press to save'
 
     return <div className={'user-input-block'}>
         <p>There Is UserInputBlock</p>
         Glucose: <CustomUserInput inputType='number' inputValue={glucose} onChange={onGlucoseInputValueChange} />
         Bread: <CustomUserInput inputType='number' inputValue={bread} onChange={onBreadInputValueChange}/>
         Insulin: <CustomUserInput inputType='number' inputValue={insulin} onChange={onInsulinInputValueChange}/>
-        <CustomSubmitButton onClick={onSaveClick} buttonTitle='Press to save' />
+        <CustomSubmitButton onClick={onSaveClick} buttonTitle={buttonTitle} />
     </div>
   }
 }
