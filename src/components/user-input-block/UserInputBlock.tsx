@@ -2,7 +2,7 @@ import React from 'react';
 import './UserInputBlock.css';
 import { CustomUserInput } from '../custom-inputs/CustomUserInput';
 import { CustomSubmitButton } from '../custom-buttons/CustomSubmitButton';
-import { UserDataDisplayBlockComponentState } from '../user-data-display-block-component/UserDataDisplayBlockComponent';
+import { UserDataDisplayBlockComponentState } from '../../connected-components/user-data-display-block-component/UserDataDisplayBlockComponent';
 
 export interface UserInputBlockProps {
     onGlucoseInputValueChange(value: string): void;

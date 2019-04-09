@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import UserDataDisplayBlockComponent from '../components/user-data-display-block-component/UserDataDisplayBlockComponent';
+import UserDataDisplayBlockComponent from '../connected-components/user-data-display-block-component/UserDataDisplayBlockComponent';
 
 export class MainPage extends Component {
   render() {

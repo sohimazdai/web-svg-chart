@@ -1,8 +1,8 @@
 import React, { Dispatch } from 'react';
 import './UserDataDisplayBlockComponent.css'
-import { List } from '../notes/List';
+import { List } from '../../components/notes/List';
 import { notes } from '../../data/notes';
-import { UserInputBlock } from '../user-input-block/UserInputBlock';
+import { UserInputBlock } from '../../components/user-input-block/UserInputBlock';
 import { Note } from '../../interfaces/Notes';
 import { connect } from 'react-redux';
 import { INotesState, IState, IUserState } from '../../store/state/state';
