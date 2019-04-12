@@ -1,8 +1,6 @@
 ## To do
 
 ...
-7) delete note;
-8) logger middleware;
 9) simple chart;
 10) advanced chart;
 11) redux persist;
