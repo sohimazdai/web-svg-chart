@@ -6,7 +6,7 @@ import { UserInputBlock } from '../../components/user-input-block/UserInputBlock
 import { Note } from '../../interfaces/Notes';
 import { connect } from 'react-redux';
 import { INotesState, IState, IUserState } from '../../store/state/state';
-import { selectNote, changeInputsMode, updateNotes } from '../../store/actions/list';
+import { selectNote, changeInputsMode, updateNotes, deleteNote } from '../../store/actions/list';
 import { DispatchWithPayload, ActionWithPayLoad } from '../../interfaces/Redux';
 
 export interface UserDataDisplayBlockComponentState {
@@ -23,6 +23,7 @@ export interface UserDataDisplayBlockComponentProps {
     updateNotes: (notes: Note[]) => void,
     selectNote: (id: number) => void,
     changeInputsMode: () => void,
+    deleteNote: (id: number) => void,
 }
 
 export class UserDataDisplayBlockComponent extends React.Component
@@ -51,7 +52,7 @@ export class UserDataDisplayBlockComponent extends React.Component
       <List
           notes={notes}
           selected={selected}
-          onSelect={selectNote}
+          onSelect={this.onSelectNote}
           onEditClick={this.onEditNoteClick}
           onDeleteClick={this.onDeleteClick}
       />
@@ -103,6 +104,11 @@ export class UserDataDisplayBlockComponent extends React.Component
     })
   }
 
+  private onSelectNote = (id: number) => {
+    const { selected, selectNote } = this.props;
+    id != selected && selectNote(id);
+  }
+
   private onClearAllClick = () => {
     const { changeInputsMode, selectNote } = this.props;
     changeInputsMode();
@@ -128,15 +134,13 @@ export class UserDataDisplayBlockComponent extends React.Component
   }
 
   private onDeleteClick = () => {
-    const { selected, notes, updateNotes, selectNote } = this.props;
-    const newNotes = notes.filter((item, index) => index !== selected );
-    updateNotes(newNotes);
-    selectNote(-1);
+    const { selected, deleteNote } = this.props;
+    deleteNote(selected)
   }
 }
 
 const mapStateToProps = (store: IState) => {
-    console.log(store)
+    (store)
     return {
         notes: store.list.notes,
         selected: store.list.selected,
@@ -148,9 +152,11 @@ const mapDispatchToProps = (dispatch: DispatchWithPayload<ActionWithPayLoad>) =>
   return {
     updateNotes: (notes: Note[]) => dispatch(updateNotes(notes)),
     selectNote: (id: number) => dispatch(selectNote(id)),
+    deleteNote: (id: number) => dispatch(deleteNote(id)),
     changeInputsMode: () => dispatch(changeInputsMode()),
   }
 }
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps,

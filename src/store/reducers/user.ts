@@ -1,7 +1,7 @@
-export const initialNotesState = {
+export const initialUserState = {
     name: 'Name'
 }
 
-export const userReducer = (state = initialNotesState) => {
+export const userReducer = (state = initialUserState) => {
     return state;
 }

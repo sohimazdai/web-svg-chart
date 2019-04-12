@@ -20,3 +20,9 @@ export function changeInputsMode() {
     type: Constants.CHANGE_INPUTS_MODE,
   }
 }
+
+export function deleteNote(id: number) {
+  return {
+    type: Constants.DELETE_NOTE,
+  }
+}

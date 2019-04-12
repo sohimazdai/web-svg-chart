@@ -8,6 +8,7 @@
     "react-redux": "^6.0.1",
     "react-scripts": "2.1.8",
     "redux": "^4.0.1",
+    "redux-logger": "^3.0.6",
     "typescript": "^3.4.1"
   },
   "scripts": {
@@ -25,7 +26,8 @@
     "@types/react": "^16.8.10",
     "@types/react-dom": "^16.8.3",
     "@types/react-redux": "^7.0.6",
-    "@types/redux": "^3.6.0"
+    "@types/redux": "^3.6.0",
+    "@types/redux-logger": "^3.0.7"
   },
   "browserslist": [
     ">0.2%",

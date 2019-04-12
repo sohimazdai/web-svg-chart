@@ -15,7 +15,6 @@ export const notesReducer = (state = initialNotesState, action: ActionWithPayLoa
             return {
                 ...state,
                 notes: action.payload,
-                selected: -1,
             };
 
         case Constants.SELECT_NOTE:
@@ -29,6 +28,12 @@ export const notesReducer = (state = initialNotesState, action: ActionWithPayLoa
                 ...state,
                 isEditingMode: !state.isEditingMode
             };
+
+        case Constants.DELETE_NOTE:
+            return {
+                ...state,
+                notes: state.notes.filter((item, index) => index != action.payload)
+            }
 
         default:
             return state;
