@@ -39,7 +39,6 @@ export class UserDataDisplayBlockComponent extends React.Component
   render() {
     const { notes, selected, selectNote, isEditingMode } = this.props;
     return <div className={'user-data-display-block-component'}>
-      <p>There Is LisaComponent</p>
       <UserInputBlock
         parentState={this.state}
         onGlucoseInputValueChange={this.onGlucoseInputValueChange}
@@ -47,12 +46,14 @@ export class UserDataDisplayBlockComponent extends React.Component
         onInsulinInputValueChange={this.onInsulinInputValueChange}
         onSaveClick={this.onSaveClick}
         isEditingMode={isEditingMode}
+        onClearAllClick={this.onClearAllClick}
       />
       <List
           notes={notes}
           selected={selected}
           onSelect={selectNote}
           onEditClick={this.onEditNoteClick}
+          onDeleteClick={this.onDeleteClick}
       />
     </div>
   }
@@ -102,6 +103,17 @@ export class UserDataDisplayBlockComponent extends React.Component
     })
   }
 
+  private onClearAllClick = () => {
+    const { changeInputsMode, selectNote } = this.props;
+    changeInputsMode();
+    selectNote(-1);
+    this.setState({
+      glucose: '',
+      bread: '',
+      insulin: '',
+    })
+  }
+
   private onEditNoteClick = () => {
     const { selected, notes, changeInputsMode } = this.props;
     changeInputsMode();
@@ -113,6 +125,13 @@ export class UserDataDisplayBlockComponent extends React.Component
         bread: note.bread,
       })
     })
+  }
+
+  private onDeleteClick = () => {
+    const { selected, notes, updateNotes, selectNote } = this.props;
+    const newNotes = notes.filter((item, index) => index !== selected );
+    updateNotes(newNotes);
+    selectNote(-1);
   }
 }
 
@@ -129,7 +148,7 @@ const mapDispatchToProps = (dispatch: DispatchWithPayload<ActionWithPayLoad>) =>
   return {
     updateNotes: (notes: Note[]) => dispatch(updateNotes(notes)),
     selectNote: (id: number) => dispatch(selectNote(id)),
-    changeInputsMode: () => dispatch(changeInputsMode())
+    changeInputsMode: () => dispatch(changeInputsMode()),
   }
 }
 export default connect(

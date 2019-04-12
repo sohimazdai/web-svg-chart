@@ -4,7 +4,6 @@ import UserDataDisplayBlockComponent from '../connected-components/user-data-dis
 export class MainPage extends Component {
   render() {
     return <div>
-      <p>There is MainPage</p>
       <UserDataDisplayBlockComponent />
     </div>
   }

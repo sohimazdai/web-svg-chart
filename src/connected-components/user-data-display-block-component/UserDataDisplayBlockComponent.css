@@ -1,3 +1,5 @@
 .user-data-display-block-component {
-
+    display: flex;
+    height: 300px;
+    flex-direction: row;
 }
