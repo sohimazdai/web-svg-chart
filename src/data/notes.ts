@@ -1,203 +1,428 @@
+import uuidv1 from 'uuid';
+import { DateMaker } from '../app/dateMaker';
+
+
+
 export const notes = [
     {
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }, {
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
         glucose: Math.ceil(Math.random()*10).toString(),
         insulin: Math.ceil(Math.random()*10).toString(),
         bread: Math.ceil(Math.random()*10).toString(),
-    }
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
+        glucose: Math.ceil(Math.random()*10).toString(),
+        insulin: Math.ceil(Math.random()*10).toString(),
+        bread: Math.ceil(Math.random()*10).toString(),
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
+        glucose: Math.ceil(Math.random()*10).toString(),
+        insulin: Math.ceil(Math.random()*10).toString(),
+        bread: Math.ceil(Math.random()*10).toString(),
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
+        glucose: Math.ceil(Math.random()*10).toString(),
+        insulin: Math.ceil(Math.random()*10).toString(),
+        bread: Math.ceil(Math.random()*10).toString(),
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
+        glucose: Math.ceil(Math.random()*10).toString(),
+        insulin: Math.ceil(Math.random()*10).toString(),
+        bread: Math.ceil(Math.random()*10).toString(),
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
+        glucose: Math.ceil(Math.random()*10).toString(),
+        insulin: Math.ceil(Math.random()*10).toString(),
+        bread: Math.ceil(Math.random()*10).toString(),
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
+        glucose: Math.ceil(Math.random()*10).toString(),
+        insulin: Math.ceil(Math.random()*10).toString(),
+        bread: Math.ceil(Math.random()*10).toString(),
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
+        glucose: Math.ceil(Math.random()*10).toString(),
+        insulin: Math.ceil(Math.random()*10).toString(),
+        bread: Math.ceil(Math.random()*10).toString(),
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
+        glucose: Math.ceil(Math.random()*10).toString(),
+        insulin: Math.ceil(Math.random()*10).toString(),
+        bread: Math.ceil(Math.random()*10).toString(),
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
+        glucose: Math.ceil(Math.random()*10).toString(),
+        insulin: Math.ceil(Math.random()*10).toString(),
+        bread: Math.ceil(Math.random()*10).toString(),
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
+        glucose: Math.ceil(Math.random()*10).toString(),
+        insulin: Math.ceil(Math.random()*10).toString(),
+        bread: Math.ceil(Math.random()*10).toString(),
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
+        glucose: Math.ceil(Math.random()*10).toString(),
+        insulin: Math.ceil(Math.random()*10).toString(),
+        bread: Math.ceil(Math.random()*10).toString(),
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
+        glucose: Math.ceil(Math.random()*10).toString(),
+        insulin: Math.ceil(Math.random()*10).toString(),
+        bread: Math.ceil(Math.random()*10).toString(),
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
+        glucose: Math.ceil(Math.random()*10).toString(),
+        insulin: Math.ceil(Math.random()*10).toString(),
+        bread: Math.ceil(Math.random()*10).toString(),
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
+        glucose: Math.ceil(Math.random()*10).toString(),
+        insulin: Math.ceil(Math.random()*10).toString(),
+        bread: Math.ceil(Math.random()*10).toString(),
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
+        glucose: Math.ceil(Math.random()*10).toString(),
+        insulin: Math.ceil(Math.random()*10).toString(),
+        bread: Math.ceil(Math.random()*10).toString(),
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
+        glucose: Math.ceil(Math.random()*10).toString(),
+        insulin: Math.ceil(Math.random()*10).toString(),
+        bread: Math.ceil(Math.random()*10).toString(),
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
+        glucose: Math.ceil(Math.random()*10).toString(),
+        insulin: Math.ceil(Math.random()*10).toString(),
+        bread: Math.ceil(Math.random()*10).toString(),
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
+        glucose: Math.ceil(Math.random()*10).toString(),
+        insulin: Math.ceil(Math.random()*10).toString(),
+        bread: Math.ceil(Math.random()*10).toString(),
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
+        glucose: Math.ceil(Math.random()*10).toString(),
+        insulin: Math.ceil(Math.random()*10).toString(),
+        bread: Math.ceil(Math.random()*10).toString(),
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },{
+        glucose: Math.ceil(Math.random()*10).toString(),
+        insulin: Math.ceil(Math.random()*10).toString(),
+        bread: Math.ceil(Math.random()*10).toString(),
+        date: DateMaker.makeRandomDate(new Date(2012, 0, 1), new Date()),
+        id: uuidv1(),
+    },
 ]

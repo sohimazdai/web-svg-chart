@@ -5,8 +5,8 @@ import { Note } from '../../interfaces/Notes';
 
 export interface ListProps {
     notes: Note[],
-    onSelect:(id: number) => any,
-    selected: number,
+    onSelect:(id: string) => any,
+    selected: string,
     onEditClick: () => void,
     onDeleteClick: () => void;
 }
@@ -16,13 +16,13 @@ export class List extends React.Component<ListProps>{
   render() {
     const { notes, onSelect, selected, onEditClick, onDeleteClick } = this.props;
     return <div className={'list'}>
-      {notes.map((note: Note, index: number) =>
+      {notes.map((note: Note) =>
           <NoteComponent
-              key={index}
-              index={index}
+              key={note.id}
+              index={note.id}
               note={note}
               onSelect={onSelect}
-              isSelected={selected == index}
+              isSelected={selected == note.id}
               onEditClick={onEditClick}
               onDeleteClick={onDeleteClick}
           />)}

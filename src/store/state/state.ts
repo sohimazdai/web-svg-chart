@@ -2,7 +2,7 @@ import { Note } from "../../interfaces/Notes";
 
 export interface INotesState {
     notes: Note[],
-    selected: number,
+    selected: string,
     isEditingMode: boolean,
 }
 

@@ -8,7 +8,7 @@ export function updateNotes(notes: Note[]) {
   }
 }
 
-export function selectNote(id: number) {
+export function selectNote(id: string) {
   return {
     type: Constants.SELECT_NOTE,
     payload: id,
@@ -21,8 +21,9 @@ export function changeInputsMode() {
   }
 }
 
-export function deleteNote(id: number) {
+export function deleteNote(id: string) {
   return {
     type: Constants.DELETE_NOTE,
+    payload: id,
   }
 }

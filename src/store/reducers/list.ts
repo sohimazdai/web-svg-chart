@@ -2,10 +2,11 @@ import { notes } from '../../data/notes';
 import { ActionWithPayLoad } from '../../interfaces/Redux';
 import { Constants } from '../actions/constants';
 import { INotesState } from '../state/state';
+import { NotesHelper } from '../../app/notesHelper';
 
 export const initialNotesState: INotesState = {
-    notes: notes,
-    selected: -1,
+    notes: NotesHelper.sortByDate(notes),
+    selected: '',
     isEditingMode: false,
 }
 
@@ -32,7 +33,7 @@ export const notesReducer = (state = initialNotesState, action: ActionWithPayLoa
         case Constants.DELETE_NOTE:
             return {
                 ...state,
-                notes: state.notes.filter((item, index) => index != action.payload)
+                notes: state.notes.filter((item) => item.id != action.payload)
             }
 
         default:

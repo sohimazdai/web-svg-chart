@@ -5,9 +5,9 @@ import { Note } from '../../interfaces/Notes';
 import { CustomSubmitButton } from '../custom-buttons/CustomSubmitButton';
 
 export interface NoteComponentProps {
-    index: number,
+    index: string,
     note: Note,
-    onSelect: (id: number) => void,
+    onSelect: (id: string) => void,
     isSelected: boolean,
     onEditClick: () => void,
     onDeleteClick: () => void,
@@ -33,7 +33,7 @@ export class NoteComponent extends React.Component<NoteComponentProps>{
             </>}
 
             <div>
-              Date: time
+              {note.date.toDateString()}
             </div>
         </div>
 

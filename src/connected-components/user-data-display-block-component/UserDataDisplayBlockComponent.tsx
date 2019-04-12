@@ -8,6 +8,8 @@ import { connect } from 'react-redux';
 import { INotesState, IState, IUserState } from '../../store/state/state';
 import { selectNote, changeInputsMode, updateNotes, deleteNote } from '../../store/actions/list';
 import { DispatchWithPayload, ActionWithPayLoad } from '../../interfaces/Redux';
+import uuidv1 from 'uuid';
+import { NotesHelper } from '../../app/notesHelper';
 
 export interface UserDataDisplayBlockComponentState {
     glucose: string;
@@ -17,13 +19,13 @@ export interface UserDataDisplayBlockComponentState {
 
 export interface UserDataDisplayBlockComponentProps {
     notes: Note[],
-    selected: number,
+    selected: string,
     isEditingMode: boolean,
     user?: any,
     updateNotes: (notes: Note[]) => void,
-    selectNote: (id: number) => void,
+    selectNote: (id: string) => void,
     changeInputsMode: () => void,
-    deleteNote: (id: number) => void,
+    deleteNote: (id: string) => void,
 }
 
 export class UserDataDisplayBlockComponent extends React.Component
@@ -35,6 +37,17 @@ export class UserDataDisplayBlockComponent extends React.Component
       bread: '',
       insulin: '',
     }
+  }
+
+  componentDidMount() {
+    const newNotes = NotesHelper.sortByDate(this.props.notes);
+    updateNotes(newNotes);
+  }
+
+  componentDidUpdate() {
+    const { notes } = this.props;
+    const newNotes = NotesHelper.sortByDate(this.props.notes);
+    newNotes != notes && updateNotes(newNotes);
   }
 
   render() {
@@ -80,23 +93,37 @@ export class UserDataDisplayBlockComponent extends React.Component
   private onSaveClick = () => {
     const { glucose, insulin, bread } = this.state;
     const { isEditingMode, notes, selected, changeInputsMode } = this.props;
+    let date: Date = new Date();
+    notes.map(item => {
+      if (item.id == selected) {
+        date = item.date;
+      }
+    })
 
     const note: Note = {
         glucose: glucose,
         bread: bread,
         insulin: insulin,
+        id: uuidv1(),
+        date: date,
     };
 
     let newNotes: Note[] = notes;
 
     if ( isEditingMode ) {
-      newNotes[selected] = note;
+      newNotes = notes.map(item => {
+          if(item.id == selected) {
+            item = note;
+          }
+        return item
+      })
       changeInputsMode();
     } else {
       newNotes = [note, ...notes];
     };
 
     (glucose || insulin || bread) && this.props.updateNotes(newNotes);
+
     this.setState({
       glucose: '',
       insulin: '',
@@ -104,7 +131,7 @@ export class UserDataDisplayBlockComponent extends React.Component
     })
   }
 
-  private onSelectNote = (id: number) => {
+  private onSelectNote = (id: string) => {
     const { selected, selectNote } = this.props;
     id != selected && selectNote(id);
   }
@@ -112,7 +139,6 @@ export class UserDataDisplayBlockComponent extends React.Component
   private onClearAllClick = () => {
     const { changeInputsMode, selectNote } = this.props;
     changeInputsMode();
-    selectNote(-1);
     this.setState({
       glucose: '',
       bread: '',
@@ -123,8 +149,8 @@ export class UserDataDisplayBlockComponent extends React.Component
   private onEditNoteClick = () => {
     const { selected, notes, changeInputsMode } = this.props;
     changeInputsMode();
-    notes.map((note: Note, index: number) => {
-      selected == index &&
+    notes.map((note: Note) => {
+      selected == note.id &&
       this.setState({
         glucose: note.glucose,
         insulin: note.insulin,
@@ -138,7 +164,6 @@ export class UserDataDisplayBlockComponent extends React.Component
     deleteNote(selected)
   }
 }
-
 const mapStateToProps = (store: IState) => {
     (store)
     return {
@@ -151,8 +176,8 @@ const mapStateToProps = (store: IState) => {
 const mapDispatchToProps = (dispatch: DispatchWithPayload<ActionWithPayLoad>) => {
   return {
     updateNotes: (notes: Note[]) => dispatch(updateNotes(notes)),
-    selectNote: (id: number) => dispatch(selectNote(id)),
-    deleteNote: (id: number) => dispatch(deleteNote(id)),
+    selectNote: (id: string) => dispatch(selectNote(id)),
+    deleteNote: (id: string) => dispatch(deleteNote(id)),
     changeInputsMode: () => dispatch(changeInputsMode()),
   }
 }
