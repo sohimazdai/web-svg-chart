@@ -2,9 +2,10 @@
 
 ...
 7) delete note;
-8) simple chart;
-9) advanced chart;
-10) redux persist;
+8) logger middleware;
+9) simple chart;
+10) advanced chart;
+11) redux persist;
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) with --typescript.
 
