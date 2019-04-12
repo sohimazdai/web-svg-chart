@@ -1,0 +1,6 @@
+.list {
+    width: 50%;
+
+    background-color: cornsilk;
+    overflow: scroll;
+}

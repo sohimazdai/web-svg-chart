@@ -10,11 +10,12 @@ export interface NoteComponentProps {
     onSelect: (id: number) => void,
     isSelected: boolean,
     onEditClick: () => void,
+    onDeleteClick: () => void,
 }
 
 export class NoteComponent extends React.Component<NoteComponentProps>{
   render() {
-    const { note, onSelect, index, isSelected, onEditClick } = this.props;
+    const { note, onSelect, index, isSelected, onEditClick, onDeleteClick } = this.props;
     const isAlertNeed = parseInt(note.glucose) > 8 || parseInt(note.bread) > 8
     return <div
         className={`note-component ${isAlertNeed ? 'alert' : 'good'} ${isSelected ? 'selected' : ''}`}
@@ -26,7 +27,11 @@ export class NoteComponent extends React.Component<NoteComponentProps>{
             <CustomNoteRow string={note.insulin} rowTitle='Insulin'/>
         </div>
         <div className={'note-component_right-column'}>
-            {isSelected && <CustomSubmitButton buttonTitle="Edit" onClick={onEditClick} />}
+            {isSelected && <>
+              <CustomSubmitButton buttonTitle="Edit" onClick={onEditClick} />
+              <CustomSubmitButton buttonTitle="Delete" onClick={onDeleteClick} />
+            </>}
+
             <div>
               Date: time
             </div>

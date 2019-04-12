@@ -8,12 +8,13 @@ export interface ListProps {
     onSelect:(id: number) => any,
     selected: number,
     onEditClick: () => void,
+    onDeleteClick: () => void;
 }
 
 export class List extends React.Component<ListProps>{
 
   render() {
-    const { notes, onSelect, selected, onEditClick } = this.props;
+    const { notes, onSelect, selected, onEditClick, onDeleteClick } = this.props;
     return <div className={'list'}>
       {notes.map((note: Note, index: number) =>
           <NoteComponent
@@ -23,6 +24,7 @@ export class List extends React.Component<ListProps>{
               onSelect={onSelect}
               isSelected={selected == index}
               onEditClick={onEditClick}
+              onDeleteClick={onDeleteClick}
           />)}
     </div>
   }
