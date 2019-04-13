@@ -33,7 +33,7 @@ export class NoteComponent extends React.Component<NoteComponentProps>{
             </>}
 
             <div>
-              {note.date.toDateString()}
+              {note.date.toDateString() + '  ' + note.date.toLocaleTimeString()}
             </div>
         </div>
 
