@@ -24,13 +24,13 @@
 }
 
 .note-component_left-column {
-    width: 50%;
+    width: 40%;
     display: inline-block;
     flex-direction: column;
 }
 
 .note-component_right-column {
-    width: 40%;
+    width: 60%;
     display: inline-block;
     flex-direction: column;
 }
