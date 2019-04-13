@@ -7,6 +7,7 @@ export interface ChartProps {
 }
 
 export class Chart extends React.Component<ChartProps> {
+
     render() {
         return <div className={'chart'}></div>
     }
