@@ -32,10 +32,10 @@ export class UserInputBlock extends React.Component<UserInputBlockProps, any> {
 
 
     return <div className={'user-input-block'}>
-        Glucose: <CustomUserInput inputType='number' inputValue={glucose} onChange={onGlucoseInputValueChange} />
-        Bread: <CustomUserInput inputType='number' inputValue={bread} onChange={onBreadInputValueChange}/>
-        Insulin: <CustomUserInput inputType='number' inputValue={insulin} onChange={onInsulinInputValueChange}/>
-        <div>
+            Glucose: <CustomUserInput inputType='number' inputValue={glucose} onChange={onGlucoseInputValueChange} />
+            Bread: <CustomUserInput inputType='number' inputValue={bread} onChange={onBreadInputValueChange}/>
+            Insulin: <CustomUserInput inputType='number' inputValue={insulin} onChange={onInsulinInputValueChange}/>
+        <div className={'user-input-block_buttons'}>
             <CustomSubmitButton onClick={onSaveClick} buttonTitle={saveButtonTitle} />
             <CustomSubmitButton onClick={onClearAllClick} buttonTitle={clearButtonTitle} disabled={inputsAreEmpty}/>
         </div>

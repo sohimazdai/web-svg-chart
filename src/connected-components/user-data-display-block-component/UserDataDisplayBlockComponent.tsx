@@ -10,6 +10,7 @@ import { selectNote, changeInputsMode, updateNotes, deleteNote } from '../../sto
 import { DispatchWithPayload, ActionWithPayLoad } from '../../interfaces/Redux';
 import uuidv1 from 'uuid';
 import { NotesHelper } from '../../app/notesHelper';
+import { Chart } from '../../components/chart/Chart';
 
 export interface UserDataDisplayBlockComponentState {
     glucose: string;
@@ -53,22 +54,25 @@ export class UserDataDisplayBlockComponent extends React.Component
   render() {
     const { notes, selected, selectNote, isEditingMode } = this.props;
     return <div className={'user-data-display-block-component'}>
-      <UserInputBlock
-        parentState={this.state}
-        onGlucoseInputValueChange={this.onGlucoseInputValueChange}
-        onBreadInputValueChange={this.onBreadInputValueChange}
-        onInsulinInputValueChange={this.onInsulinInputValueChange}
-        onSaveClick={this.onSaveClick}
-        isEditingMode={isEditingMode}
-        onClearAllClick={this.onClearAllClick}
-      />
-      <List
-          notes={notes}
-          selected={selected}
-          onSelect={this.onSelectNote}
-          onEditClick={this.onEditNoteClick}
-          onDeleteClick={this.onDeleteClick}
-      />
+      <div className={'user-data-display-block-component_high-row'}>
+        <UserInputBlock
+          parentState={this.state}
+          onGlucoseInputValueChange={this.onGlucoseInputValueChange}
+          onBreadInputValueChange={this.onBreadInputValueChange}
+          onInsulinInputValueChange={this.onInsulinInputValueChange}
+          onSaveClick={this.onSaveClick}
+          isEditingMode={isEditingMode}
+          onClearAllClick={this.onClearAllClick}
+        />
+        <List
+            notes={notes}
+            selected={selected}
+            onSelect={this.onSelectNote}
+            onEditClick={this.onEditNoteClick}
+            onDeleteClick={this.onDeleteClick}
+        />
+      </div>
+      <Chart notes={notes}/>
     </div>
   }
 
