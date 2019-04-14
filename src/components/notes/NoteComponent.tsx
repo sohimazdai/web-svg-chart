@@ -26,15 +26,16 @@ export class NoteComponent extends React.Component<NoteComponentProps>{
             <CustomNoteRow string={note.bread} rowTitle='Bread'/>
             <CustomNoteRow string={note.insulin} rowTitle='Insulin'/>
         </div>
+        <div className={'note-component_middle-column'}>
+              <div>{note.date.toDateString()}</div>
+              <div>{note.date.toLocaleTimeString()}</div>
+        </div>
         <div className={'note-component_right-column'}>
             {isSelected && <>
-              <CustomSubmitButton buttonTitle="Edit" onClick={onEditClick} />
-              <CustomSubmitButton buttonTitle="Delete" onClick={onDeleteClick} />
+              <CustomSubmitButton buttonTitle="E" onClick={onEditClick} />
+              <CustomSubmitButton buttonTitle="X" onClick={onDeleteClick} />
             </>}
 
-            <div>
-              {note.date.toDateString() + '  ' + note.date.toLocaleTimeString()}
-            </div>
         </div>
 
     </div>

@@ -1,11 +1,10 @@
-import React, { Dispatch } from 'react';
+import React from 'react';
 import './UserDataDisplayBlockComponent.css'
 import { List } from '../../components/notes/List';
-import { notes } from '../../data/notes';
 import { UserInputBlock } from '../../components/user-input-block/UserInputBlock';
 import { Note } from '../../interfaces/Notes';
 import { connect } from 'react-redux';
-import { INotesState, IState, IUserState } from '../../store/state/state';
+import { IState } from '../../store/state/state';
 import { selectNote, changeInputsMode, updateNotes, deleteNote } from '../../store/actions/list';
 import { DispatchWithPayload, ActionWithPayLoad } from '../../interfaces/Redux';
 import uuidv1 from 'uuid';

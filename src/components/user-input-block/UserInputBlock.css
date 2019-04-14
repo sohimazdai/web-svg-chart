@@ -9,7 +9,6 @@
     flex-direction: column;
     justify-content: space-between;
 
-    background-color: aliceblue;
 }
 
 .user-input-block_inputs {
@@ -17,4 +16,5 @@
 }
 
 .user-input-block_buttons {
+
 }
