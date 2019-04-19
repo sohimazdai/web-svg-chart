@@ -2,8 +2,6 @@ import { Note } from "../interfaces/Notes";
 import { DateMaker } from "./dateMaker";
 import uuidv1 from "uuid";
 
-// const initialDate = new Date(2019, 0, 1);
-// const endDate = new  Date(); //today
 
 export class NotesHelper {
 
