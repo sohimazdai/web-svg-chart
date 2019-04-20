@@ -10,6 +10,7 @@ import { DispatchWithPayload, ActionWithPayLoad } from '../../interfaces/Redux';
 import uuidv1 from 'uuid';
 import { NotesHelper } from '../../app/notesHelper';
 import { Chart } from '../../components/chart/Chart';
+import { AppColor } from '../../constants/Colors';
 
 export interface UserDataDisplayBlockComponentState {
     glucose: string;
@@ -71,7 +72,19 @@ export class UserDataDisplayBlockComponent extends React.Component
             onDeleteClick={this.onDeleteClick}
         />
       </div>
-      <Chart notes={notes}/>
+      <Chart
+          chartStyleProps={{
+              axiosStroke: AppColor.DARK_GRAY,
+              axiosStrokeWidth: 5,
+              dashStroke: AppColor.GRAY,
+              dashStrokeWidth: 3,
+              netStroke: AppColor.LIGHT_GRAY,
+              netStrokeWidth: 1,
+          }}
+          notes={notes}
+          numberOfDashesOY={20}
+          numberOfDashesOX={20}
+      />
     </div>
   }
 
