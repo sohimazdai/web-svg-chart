@@ -6,9 +6,6 @@ import { AppColor } from '../../constants/Colors';
 import { Chart } from './Chart';
 
 export interface ChartBodyProps {
-    hasXAxis?: boolean;
-    hasYAxis?: boolean;
-    hasNet?: boolean;
     numberOfDashesOX?: number;
     numberOfDashesOY?: number;
     chartStyleProps: ChartStyleProps;
@@ -16,8 +13,8 @@ export interface ChartBodyProps {
 }
 
 export class ChartBody extends React.Component<ChartBodyProps> {
-    private numberOfDashesOX: number = this.numberOfDashesOX || 5;
-    private numberOfDashesOY: number = this.numberOfDashesOY || 5;
+    private numberOfDashesOX: number = this.props.numberOfDashesOX || 5;
+    private numberOfDashesOY: number = this.props.numberOfDashesOY || 5;
     private dashesOY: JSX.Element[] = this.renderDash(AxisType.OY, this.numberOfDashesOY);
     private dashesOX: JSX.Element[] = this.renderDash(AxisType.OX, this.numberOfDashesOX);
     private net: JSX.Element[] = this.renderNet(AxisType.OX, AxisType.OY);
@@ -35,19 +32,17 @@ export class ChartBody extends React.Component<ChartBodyProps> {
     }
 
     renderPolyline(pointsArray: Points, type: PolylineType) {
-        console.log(pointsArray);
-        let onePercentX = (Chart.ChartX - Chart.ChartX * ChartHelper.min/50) / 100;
-        let onePercentY = (Chart.ChartY - Chart.ChartY * ChartHelper.min/50) / 100;
-        let tempArr = pointsArray.glucosePoints.slice(90);
-        console.log(tempArr)
+        let tempArr = pointsArray.glucosePoints.slice(this.getFirstTodayArrayItemNumber(pointsArray.datePoints));
+        let dateArr = pointsArray.datePoints.slice(this.getFirstTodayArrayItemNumber(pointsArray.datePoints));
         let points = "";
-        let x = ChartHelper.min * onePercentX;
-        let y = tempArr[0];
+        let x = ChartHelper.min * Chart.percentOfX;
+        let y = tempArr[0] + Chart.percentOfY * ChartHelper.min;
         if (type == PolylineType.GLU) {
             for (var iter = 0; iter <= tempArr.length; ++iter) {
                 points += '' + x + ',' + y + ' ';
-                x = ( ((100 - ChartHelper.indent * 2)/tempArr.length) * (iter + 1) + ChartHelper.min) * onePercentX;
-                y = (100 - tempArr[iter]) * onePercentY;
+                x = this.calculateDateToResizeable(dateArr[iter]) * Chart.percentOfX;
+                console.log(x);
+                y = (Chart.viewY - tempArr[iter] + Chart.percentOfY * ChartHelper.min);
             }
         }
         return <polyline points={points} stroke={AppColor.DARK_GRAY} strokeWidth={5} fill="none" />
@@ -79,7 +74,7 @@ export class ChartBody extends React.Component<ChartBodyProps> {
 
     renderNet(ox: AxisType.OX, oy: AxisType.OY) {
         const { chartStyleProps } = this.props;
-        let lineArray = []
+        let lineArray = [];
         if (ox) {
             for (let i = 0; i < this.numberOfDashesOX; i++) {
                 lineArray.push(this.renderLine(
@@ -91,8 +86,8 @@ export class ChartBody extends React.Component<ChartBodyProps> {
                         chartStyleProps.netStroke
                     )
                 ));
-            }
-        }
+            };
+        };
         if (oy) {
             for (let i = 0; i < this.numberOfDashesOY; i++) {
                 lineArray.push(this.renderLine(
@@ -108,4 +103,27 @@ export class ChartBody extends React.Component<ChartBodyProps> {
         }
         return lineArray;
     }
+
+    public calculateDateToResizeable(propDate: number) {
+        let dayStart = new Date((new Date()).toDateString()).getTime();
+        let dayEnd = (new Date('1970-01-02')).getTime() + dayStart;
+        let date = (new Date(propDate)).getTime();
+        let dayRange = dayEnd - dayStart;
+        console.log((date/dayRange)*100)
+        return ((date - dayStart)/dayRange)*100;
+    }
+
+    public getFirstTodayArrayItemNumber(array: number[]) {
+        let today = (new Date()).toDateString();
+        let res = array.length;
+        array.map((item, index) => {
+            let itemDate = (new Date(item)).toDateString();
+            if (itemDate == today && res == array.length){
+                res = index;
+            }
+        })
+        return res;
+
+    }
+
 }

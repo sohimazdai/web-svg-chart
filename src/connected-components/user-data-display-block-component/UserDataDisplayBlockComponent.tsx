@@ -67,7 +67,7 @@ export class UserDataDisplayBlockComponent extends React.Component
           onClearAllClick={this.onClearAllClick}
         />
         <List
-            notes={notes}
+            notes={notes.slice(90)}
             selected={selected}
             onSelect={this.onSelectNote}
             onEditClick={this.onEditNoteClick}
@@ -84,7 +84,7 @@ export class UserDataDisplayBlockComponent extends React.Component
               netStrokeWidth: 1,
           }}
           notes={notes}
-          numberOfDashesOY={20}
+          numberOfDashesOY={12}
           numberOfDashesOX={20}
       />
     </div>

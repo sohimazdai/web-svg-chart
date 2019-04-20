@@ -15,6 +15,7 @@ export class List extends React.Component<ListProps>{
 
   render() {
     const { notes, onSelect, selected, onEditClick, onDeleteClick } = this.props;
+    console.log("NOTES", notes)
     return <div className={'list'}>
       {notes.map((note: Note) =>
           <NoteComponent

@@ -37,3 +37,8 @@ export enum PolylineType {
     BRE = 'bre',
     INS = 'ins'
 }
+
+export interface ChartContentViewBox {
+    vievX: number;
+    viewY: number;
+}

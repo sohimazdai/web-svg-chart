@@ -7,7 +7,7 @@ export class ChartHelper {
     static indent = 2;
 
     static get min() {
-        return 100 - (100 - ChartHelper.indent);
+        return (100 - (100 - ChartHelper.indent));
     }
 
     static get max() {
@@ -87,6 +87,5 @@ export class ChartHelper {
         params.strokeWidth = strokeWidth;
         params.stroke = stroke;
         return params;
-
     }
 }
