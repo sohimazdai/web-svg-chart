@@ -1,7 +1,9 @@
 import React from 'react';
 import './ChartBody.css';
-import { SvgLineProps, AxisType, ChartStyleProps } from '../../interfaces/SVG';
+import { SvgLineProps, AxisType, ChartStyleProps, Points, PolylineType } from '../../interfaces/SVG';
 import { ChartHelper } from '../../app/chartHelper';
+import { AppColor } from '../../constants/Colors';
+import { Chart } from './Chart';
 
 export interface ChartBodyProps {
     hasXAxis?: boolean;
@@ -10,6 +12,7 @@ export interface ChartBodyProps {
     numberOfDashesOX?: number;
     numberOfDashesOY?: number;
     chartStyleProps: ChartStyleProps;
+    polylinePoints: Points;
 }
 
 export class ChartBody extends React.Component<ChartBodyProps> {
@@ -20,14 +23,34 @@ export class ChartBody extends React.Component<ChartBodyProps> {
     private net: JSX.Element[] = this.renderNet(AxisType.OX, AxisType.OY);
 
     render() {
-        const { chartStyleProps } = this.props;
+        const { chartStyleProps, polylinePoints } = this.props;
         return <>
             {this.dashesOY}
             {this.dashesOX}
             {this.net}
+            {this.renderPolyline(polylinePoints, PolylineType.GLU)}
             {this.renderLine(ChartHelper.drawAxis(AxisType.OX, chartStyleProps.axiosStrokeWidth, chartStyleProps.axiosStroke))}
             {this.renderLine(ChartHelper.drawAxis(AxisType.OY, chartStyleProps.axiosStrokeWidth, chartStyleProps.axiosStroke))}
         </>
+    }
+
+    renderPolyline(pointsArray: Points, type: PolylineType) {
+        console.log(pointsArray);
+        let onePercentX = (Chart.ChartX - Chart.ChartX * ChartHelper.min/50) / 100;
+        let onePercentY = (Chart.ChartY - Chart.ChartY * ChartHelper.min/50) / 100;
+        let tempArr = pointsArray.glucosePoints.slice(90);
+        console.log(tempArr)
+        let points = "";
+        let x = ChartHelper.min * onePercentX;
+        let y = tempArr[0];
+        if (type == PolylineType.GLU) {
+            for (var iter = 0; iter <= tempArr.length; ++iter) {
+                points += '' + x + ',' + y + ' ';
+                x = ( ((100 - ChartHelper.indent * 2)/tempArr.length) * (iter + 1) + ChartHelper.min) * onePercentX;
+                y = (100 - tempArr[iter]) * onePercentY;
+            }
+        }
+        return <polyline points={points} stroke={AppColor.DARK_GRAY} strokeWidth={5} fill="none" />
     }
 
     renderDash(AxisType: AxisType, numberOfDashes: number) {

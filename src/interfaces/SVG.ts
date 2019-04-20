@@ -24,3 +24,16 @@ export interface ChartStyleProps {
     netStroke: Color;
     netStrokeWidth: number;
 }
+
+export interface Points {
+    glucosePoints: number[],
+    breadPoints: number[],
+    insulinPoints: number[],
+    datePoints: number[],
+}
+
+export enum PolylineType {
+    GLU = 'glu',
+    BRE = 'bre',
+    INS = 'ins'
+}
