@@ -41,12 +41,14 @@ export class UserDataDisplayBlockComponent extends React.Component
   }
 
   componentDidMount() {
+    const now = performance.now();
     const newNotes = NotesHelper.sortByDate(this.props.notes);
     updateNotes(newNotes);
   }
 
   componentDidUpdate() {
     const { notes } = this.props;
+    const now = performance.now();
     const newNotes = NotesHelper.sortByDate(this.props.notes);
     newNotes != notes && updateNotes(newNotes);
   }

@@ -2,7 +2,6 @@ import React from 'react';
 import './ChartBody.css';
 import { SvgLineProps, AxisType, ChartStyleProps } from '../../interfaces/SVG';
 import { ChartHelper } from '../../app/chartHelper';
-import { Color } from 'csstype';
 
 export interface ChartBodyProps {
     hasXAxis?: boolean;
@@ -18,7 +17,7 @@ export class ChartBody extends React.Component<ChartBodyProps> {
     private numberOfDashesOY: number = this.numberOfDashesOY || 5;
     private dashesOY: JSX.Element[] = this.renderDash(AxisType.OY, this.numberOfDashesOY);
     private dashesOX: JSX.Element[] = this.renderDash(AxisType.OX, this.numberOfDashesOX);
-    private net: JSX.Element[] = this.renderNet(true, true);
+    private net: JSX.Element[] = this.renderNet(AxisType.OX, AxisType.OY);
 
     render() {
         const { chartStyleProps } = this.props;
@@ -55,22 +54,32 @@ export class ChartBody extends React.Component<ChartBodyProps> {
         )
     }
 
-    renderNet(ox: boolean, oy: boolean) {
+    renderNet(ox: AxisType.OX, oy: AxisType.OY) {
         const { chartStyleProps } = this.props;
         let lineArray = []
-
         if (ox) {
             for (let i = 0; i < this.numberOfDashesOX; i++) {
                 lineArray.push(this.renderLine(
-                    ChartHelper.drawNet(i, AxisType.OX, this.numberOfDashesOX, chartStyleProps.netStrokeWidth, chartStyleProps.netStroke)
+                    ChartHelper.drawNet(
+                        i,
+                        ox,
+                        this.numberOfDashesOX,
+                        chartStyleProps.netStrokeWidth,
+                        chartStyleProps.netStroke
+                    )
                 ));
             }
         }
-
         if (oy) {
             for (let i = 0; i < this.numberOfDashesOY; i++) {
                 lineArray.push(this.renderLine(
-                    ChartHelper.drawNet(i, AxisType.OY, this.numberOfDashesOY, chartStyleProps.netStrokeWidth, chartStyleProps.netStroke)
+                    ChartHelper.drawNet(
+                        i,
+                        oy,
+                        this.numberOfDashesOY,
+                        chartStyleProps.netStrokeWidth,
+                        chartStyleProps.netStroke
+                    )
                 ));
             }
         }

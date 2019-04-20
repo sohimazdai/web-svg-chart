@@ -13,10 +13,11 @@ export interface ChartProps {
 }
 
 export class Chart extends React.Component<ChartProps> {
-    static ChartXY = 1000;
+    static ChartX = 1400;
+    static ChartY = 1000;
     render() {
       const { chartStyleProps, numberOfDashesOY, numberOfDashesOX } = this.props;
-      const viewBoxPropsStr = '0 0 ' + Chart.ChartXY + ' ' + Chart.ChartXY;
+      const viewBoxPropsStr = '0 0 ' + Chart.ChartX + ' ' + Chart.ChartY;
       return <div className={'chart'}>
           <svg viewBox={viewBoxPropsStr} width="100%">
             <ChartBody

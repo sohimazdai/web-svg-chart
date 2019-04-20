@@ -45,7 +45,7 @@ export class ChartHelper {
                 x1: ((100 - 2 * ChartHelper.indent)/numberOfDashes) * (iter + 1) + ChartHelper.min,
                 y1: ChartHelper.max,
                 x2: ((100 - 2 * ChartHelper.indent)/numberOfDashes) * (iter + 1) + ChartHelper.min,
-                y2: Chart.ChartXY,
+                y2: Chart.ChartY,
             }
         } else if(axis == AxisType.OY) {
             params = {
