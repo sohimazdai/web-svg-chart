@@ -1,15 +1,14 @@
 import React from 'react';
-import './ChartBody.css';
-import { SvgLineProps, AxisType, ChartStyleProps, Points, PolylineType } from '../../interfaces/SVG';
+import { SvgLineProps, AxisType, ChartStyleProps, Points, PolylineType, SvgDotProps } from '../../interfaces/SVG';
 import { ChartHelper } from '../../app/chartHelper';
-import { AppColor } from '../../constants/Colors';
+import { ChartColor } from '../../constants/Colors';
 import { Chart } from './Chart';
 
 export interface ChartBodyProps {
     numberOfDashesOX?: number;
     numberOfDashesOY?: number;
     chartStyleProps: ChartStyleProps;
-    // polylinePoints: Points;
+    polylinePoints: Points;
 }
 
 export class ChartBody extends React.Component<ChartBodyProps> {
@@ -18,35 +17,51 @@ export class ChartBody extends React.Component<ChartBodyProps> {
     private dashesOY: JSX.Element[] = this.renderDash(AxisType.OY, this.numberOfDashesOY);
     private dashesOX: JSX.Element[] = this.renderDash(AxisType.OX, this.numberOfDashesOX);
     private net: JSX.Element[] = this.renderNet(AxisType.OX, AxisType.OY);
+    radius = 5;
 
     render() {
-        const { chartStyleProps } = this.props;
+        const { chartStyleProps, polylinePoints} = this.props;
         return <>
             {this.dashesOY}
             {this.dashesOX}
             {this.net}
             {this.renderLine(ChartHelper.drawAxis(AxisType.OX, chartStyleProps.axiosStrokeWidth, chartStyleProps.axiosStroke))}
             {this.renderLine(ChartHelper.drawAxis(AxisType.OY, chartStyleProps.axiosStrokeWidth, chartStyleProps.axiosStroke))}
+            {this.renderPolyline(polylinePoints, PolylineType.GLU)}
+            {this.renderPoints(polylinePoints, PolylineType.GLU)}
         </>
     }
 
-    // renderPolyline(pointsArray: Points, type: PolylineType) {
-    //     let tempArr = pointsArray.glucosePoints
-    //     let dateArr = pointsArray.datePoints
-    //     let points = "";
-    //     let x: number;
-    //     let y: number;
-    //     if (type == PolylineType.GLU) {
-    //         for (var iter = 0; iter < tempArr.length; iter++) {
-    //             x = (this.calculateDateToResizeable(dateArr[iter]) * Chart.percentOfX);
-    //             console.log('x', x);
-    //             y = (Chart.viewY - tempArr[iter] + Chart.percentOfY * ChartHelper.min);
-    //             console.log('y', y);
-    //             points += '' + x + ',' + y + ' ';
-    //         }
-    //     }
-    //     return <polyline points={points} stroke={AppColor.DARK_GRAY} strokeWidth={5} fill="none" />
-    // }
+    renderPolyline(points: Points, type: PolylineType) {
+        let path: string = '';
+        let x: number;
+        let y: number;
+        if (type == PolylineType.GLU) {
+            for (var iter = 0; iter < points.glucosePoints.length; iter++) {
+                x = points.datePoints[iter];
+                y = points.glucosePoints[iter];
+                path += x + ',' + y + ' '
+            }
+        }
+        console.log(path)
+        return <polyline points={path} stroke="tomato" strokeWidth="5" fill="none" />
+    }
+
+    renderPoints(points: Points, type: PolylineType) {
+        let pointsArr = []
+        if (type == PolylineType.GLU) {
+            for (var iter = 0; iter < points.glucosePoints.length; iter++) {
+                pointsArr.push(this.renderDot({
+                    cy: points.glucosePoints[iter],
+                    cx: points.datePoints[iter],
+                    r: 5,
+                    stroke: "black",
+                    strokeWidth: 4
+                }))
+            }
+        }
+        return pointsArr
+    }
 
     renderDash(AxisType: AxisType, numberOfDashes: number) {
         const { chartStyleProps } = this.props;
@@ -68,6 +83,18 @@ export class ChartBody extends React.Component<ChartBodyProps> {
                 y2={(params.y2 || ChartHelper.max) + '%'}
                 stroke={params.stroke || 'black'}
                 strokeWidth={params.strokeWidth || 5}
+            />
+        )
+    }
+
+    renderDot(params: SvgDotProps) {
+        return (
+            <circle
+                cx={params.cx}
+                cy={params.cy}
+                r={params.r}
+                stroke={params.stroke}
+                strokeWidth={params.strokeWidth}
             />
         )
     }
@@ -103,25 +130,4 @@ export class ChartBody extends React.Component<ChartBodyProps> {
         }
         return lineArray;
     }
-
-    // public calculateDateToResizeable(propDate: number) {
-    //     let dayStart = new Date((new Date()).toDateString()).getTime();
-    //     let dayEnd = (new Date('1970-01-02')).getTime() + dayStart;
-    //     let date = (new Date(propDate)).getTime();
-    //     let dayRange = dayEnd - dayStart;
-    //     return ((date - dayStart)/dayRange);
-    // }
-
-    // public getFirstTodayArrayItemNumber(array: number[]) {
-    //     let today = (new Date()).toDateString();
-    //     let res = array.length;
-    //     array.map((item, index) => {
-    //         let itemDate = (new Date(item)).toDateString();
-    //         if (itemDate == today && res == array.length){
-    //             res = index;
-    //         }
-    //     })
-    //     return res;
-    // }
-
 }

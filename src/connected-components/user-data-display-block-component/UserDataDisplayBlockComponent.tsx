@@ -10,7 +10,7 @@ import { DispatchWithPayload, ActionWithPayLoad } from '../../interfaces/Redux';
 import uuidv1 from 'uuid';
 import { NotesHelper } from '../../app/notesHelper';
 import { Chart } from '../../components/chart/Chart';
-import { AppColor } from '../../constants/Colors';
+import { ChartColor } from '../../constants/Colors';
 
 export interface UserDataDisplayBlockComponentState {
     glucose: string;
@@ -76,11 +76,11 @@ export class UserDataDisplayBlockComponent extends React.Component
       </div>
       <Chart
           chartStyleProps={{
-              axiosStroke: AppColor.DARK_GRAY,
+              axiosStroke: ChartColor.AXIS,
               axiosStrokeWidth: 5,
-              dashStroke: AppColor.GRAY,
+              dashStroke: ChartColor.DASH,
               dashStrokeWidth: 3,
-              netStroke: AppColor.LIGHT_GRAY,
+              netStroke: ChartColor.NET,
               netStrokeWidth: 1,
           }}
           notes={notes}

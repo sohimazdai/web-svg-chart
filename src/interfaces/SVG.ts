@@ -9,6 +9,14 @@ export interface SvgLineProps {
     strokeWidth?: string | number;
 }
 
+export interface SvgDotProps {
+    cx: number;
+    cy: number;
+    r?: number;
+    stroke?: Color;
+    strokeWidth?: number;
+}
+
 export enum AxisType {
     OX = 'o-x',
     XO = 'x-o',
