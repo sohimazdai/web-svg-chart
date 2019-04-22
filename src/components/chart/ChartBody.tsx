@@ -9,7 +9,7 @@ export interface ChartBodyProps {
     numberOfDashesOX?: number;
     numberOfDashesOY?: number;
     chartStyleProps: ChartStyleProps;
-    polylinePoints: Points;
+    // polylinePoints: Points;
 }
 
 export class ChartBody extends React.Component<ChartBodyProps> {
@@ -20,33 +20,33 @@ export class ChartBody extends React.Component<ChartBodyProps> {
     private net: JSX.Element[] = this.renderNet(AxisType.OX, AxisType.OY);
 
     render() {
-        const { chartStyleProps, polylinePoints } = this.props;
+        const { chartStyleProps } = this.props;
         return <>
             {this.dashesOY}
             {this.dashesOX}
             {this.net}
-            {this.renderPolyline(polylinePoints, PolylineType.GLU)}
             {this.renderLine(ChartHelper.drawAxis(AxisType.OX, chartStyleProps.axiosStrokeWidth, chartStyleProps.axiosStroke))}
             {this.renderLine(ChartHelper.drawAxis(AxisType.OY, chartStyleProps.axiosStrokeWidth, chartStyleProps.axiosStroke))}
         </>
     }
 
-    renderPolyline(pointsArray: Points, type: PolylineType) {
-        let tempArr = pointsArray.glucosePoints.slice(this.getFirstTodayArrayItemNumber(pointsArray.datePoints));
-        let dateArr = pointsArray.datePoints.slice(this.getFirstTodayArrayItemNumber(pointsArray.datePoints));
-        let points = "";
-        let x = ChartHelper.min * Chart.percentOfX;
-        let y = tempArr[0] + Chart.percentOfY * ChartHelper.min;
-        if (type == PolylineType.GLU) {
-            for (var iter = 0; iter <= tempArr.length; ++iter) {
-                points += '' + x + ',' + y + ' ';
-                x = this.calculateDateToResizeable(dateArr[iter]) * Chart.percentOfX;
-                console.log(x);
-                y = (Chart.viewY - tempArr[iter] + Chart.percentOfY * ChartHelper.min);
-            }
-        }
-        return <polyline points={points} stroke={AppColor.DARK_GRAY} strokeWidth={5} fill="none" />
-    }
+    // renderPolyline(pointsArray: Points, type: PolylineType) {
+    //     let tempArr = pointsArray.glucosePoints
+    //     let dateArr = pointsArray.datePoints
+    //     let points = "";
+    //     let x: number;
+    //     let y: number;
+    //     if (type == PolylineType.GLU) {
+    //         for (var iter = 0; iter < tempArr.length; iter++) {
+    //             x = (this.calculateDateToResizeable(dateArr[iter]) * Chart.percentOfX);
+    //             console.log('x', x);
+    //             y = (Chart.viewY - tempArr[iter] + Chart.percentOfY * ChartHelper.min);
+    //             console.log('y', y);
+    //             points += '' + x + ',' + y + ' ';
+    //         }
+    //     }
+    //     return <polyline points={points} stroke={AppColor.DARK_GRAY} strokeWidth={5} fill="none" />
+    // }
 
     renderDash(AxisType: AxisType, numberOfDashes: number) {
         const { chartStyleProps } = this.props;
@@ -104,26 +104,24 @@ export class ChartBody extends React.Component<ChartBodyProps> {
         return lineArray;
     }
 
-    public calculateDateToResizeable(propDate: number) {
-        let dayStart = new Date((new Date()).toDateString()).getTime();
-        let dayEnd = (new Date('1970-01-02')).getTime() + dayStart;
-        let date = (new Date(propDate)).getTime();
-        let dayRange = dayEnd - dayStart;
-        console.log((date/dayRange)*100)
-        return ((date - dayStart)/dayRange)*100;
-    }
+    // public calculateDateToResizeable(propDate: number) {
+    //     let dayStart = new Date((new Date()).toDateString()).getTime();
+    //     let dayEnd = (new Date('1970-01-02')).getTime() + dayStart;
+    //     let date = (new Date(propDate)).getTime();
+    //     let dayRange = dayEnd - dayStart;
+    //     return ((date - dayStart)/dayRange);
+    // }
 
-    public getFirstTodayArrayItemNumber(array: number[]) {
-        let today = (new Date()).toDateString();
-        let res = array.length;
-        array.map((item, index) => {
-            let itemDate = (new Date(item)).toDateString();
-            if (itemDate == today && res == array.length){
-                res = index;
-            }
-        })
-        return res;
-
-    }
+    // public getFirstTodayArrayItemNumber(array: number[]) {
+    //     let today = (new Date()).toDateString();
+    //     let res = array.length;
+    //     array.map((item, index) => {
+    //         let itemDate = (new Date(item)).toDateString();
+    //         if (itemDate == today && res == array.length){
+    //             res = index;
+    //         }
+    //     })
+    //     return res;
+    // }
 
 }
