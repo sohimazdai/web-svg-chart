@@ -1,11 +1,5 @@
-## To do
-
-...
-9) simple chart;
-10) advanced chart;
-11) redux persist;
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) with --typescript.
+## What
+diabetes control web application
 
 ## Available Scripts
 
