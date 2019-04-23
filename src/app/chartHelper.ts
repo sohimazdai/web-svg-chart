@@ -54,11 +54,13 @@ export class ChartHelper {
         axis: AxisType,
         numberOfDashes: number,
         strokeWidth?: string | number,
-        stroke?: Color
+        stroke?: Color,
+        id?: string,
     ) {
         let params: SvgLineProps = {};
         if (axis == AxisType.OX) {
             params = {
+                id: iter.toString() + AxisType.OX,
                 x1: ((100 - 2 * this.indent)/numberOfDashes) * (iter + 1) + this.min,
                 y1: this.max,
                 x2: ((100 - 2 * this.indent)/numberOfDashes) * (iter + 1) + this.min,
@@ -66,6 +68,7 @@ export class ChartHelper {
             }
         } else if(axis == AxisType.OY) {
             params = {
+                id: iter.toString() + AxisType.OY,
                 x1: this.min,
                 y1: ((100 - 2 * this.indent)/numberOfDashes) * iter + this.min,
                 x2: '0',
@@ -82,11 +85,13 @@ export class ChartHelper {
         axis: AxisType,
         numberOfDashes: number,
         strokeWidth?: string | number,
-        stroke?: Color
+        stroke?: Color,
+        id?: string,
     ){
         let params: SvgLineProps = {};
         if (axis == AxisType.OX) {
             params = {
+                id: iter.toString() + AxisType.OX + numberOfDashes,
                 x1: ((100 - 2 * this.indent)/numberOfDashes) * (iter + 1) + this.min,
                 y1: this.max,
                 x2: ((100 - 2 * this.indent)/numberOfDashes) * (iter + 1) + this.min,
@@ -95,6 +100,7 @@ export class ChartHelper {
         }
         if(axis == AxisType.OY) {
             params = {
+                id: iter.toString() + AxisType.OY + numberOfDashes,
                 x1: this.min,
                 y1: ((100 - 2 * this.indent)/numberOfDashes) * iter + this.min,
                 x2: this.max,

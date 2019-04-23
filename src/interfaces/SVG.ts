@@ -1,6 +1,7 @@
 import { Color } from "csstype";
 
 export interface SvgLineProps {
+    id?: string;
     x1?: string | number;
     y1?: string | number;
     x2?: string | number;
@@ -15,6 +16,7 @@ export interface SvgDotProps {
     r?: number;
     stroke?: Color;
     strokeWidth?: number;
+    id?: string;
 }
 
 export enum AxisType {
