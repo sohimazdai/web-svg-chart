@@ -44,7 +44,7 @@ export class ChartBody extends React.Component<ChartBodyProps> {
             }
         }
         console.log(path)
-        return <polyline points={path} stroke="tomato" strokeWidth="5" fill="none" />
+        return <polyline id={PolylineType.GLU} points={path} stroke="tomato" strokeWidth="5" fill="none" />
     }
 
     renderPoints(points: Points, type: PolylineType) {
@@ -56,7 +56,8 @@ export class ChartBody extends React.Component<ChartBodyProps> {
                     cx: points.datePoints[iter],
                     r: 5,
                     stroke: "black",
-                    strokeWidth: 4
+                    strokeWidth: 4,
+                    id: iter.toString(),
                 }))
             }
         }
@@ -77,6 +78,8 @@ export class ChartBody extends React.Component<ChartBodyProps> {
     renderLine(params: SvgLineProps) {
         return (
             <line
+                key={params.id}
+                id={params.id}
                 x1={(params.x1 || ChartHelper.min) + '%'}
                 x2={(params.x2 || ChartHelper.min) + '%'}
                 y1={(params.y1 || ChartHelper.max) + '%'}
@@ -90,6 +93,8 @@ export class ChartBody extends React.Component<ChartBodyProps> {
     renderDot(params: SvgDotProps) {
         return (
             <circle
+                key={params.id}
+                id={params.id}
                 cx={params.cx}
                 cy={params.cy}
                 r={params.r}
