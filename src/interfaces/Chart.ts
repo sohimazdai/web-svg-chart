@@ -52,3 +52,8 @@ export interface ChartContentViewBox {
     vievX: number;
     viewY: number;
 }
+
+export enum SelectSectionDirectionType {
+    PREVIOUS = 'previous',
+    NEXT = 'next'
+}

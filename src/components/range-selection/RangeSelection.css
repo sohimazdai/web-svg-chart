@@ -1,0 +1,44 @@
+.range-selection {
+    margin: 20px;
+
+    text-align: center;
+}
+
+.range-selection__section-title {
+
+}
+
+.range-selection__changing-box {
+    width: 80%;
+    height: 40px;
+    display: flex;
+
+    margin: 10px auto;
+    padding: 9px;
+    border: 1px solid #aeaeae;
+    flex-direction: row;
+
+    border-radius: 10px;
+}
+
+    .range-selection__change-range {
+        width: 30%;
+        height: 100%;
+        margin: 0px 2%;
+    }
+        .range-selection__select-input {
+            width: 70%;
+            height: 100%;
+
+            margin: 0 auto;
+            border: 0px;
+
+            background-color: #fefefe
+        }
+
+    .range-selection__changing-section-value {
+        display: flex;
+        flex-direction: row;
+        width: 60%;
+        justify-content: space-around;
+    }

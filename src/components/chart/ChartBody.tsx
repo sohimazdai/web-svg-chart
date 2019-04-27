@@ -1,5 +1,5 @@
 import React from 'react';
-import { SvgLineProps, AxisType, ChartStyleProps, Points, PolylineType, SvgDotProps } from '../../interfaces/SVG';
+import { SvgLineProps, AxisType, ChartStyleProps, Points, PolylineType, SvgDotProps } from '../../interfaces/Chart';
 import { ChartHelper } from '../../app/chartHelper';
 import { ChartColor } from '../../constants/Colors';
 import { Chart } from './Chart';

@@ -2,7 +2,7 @@ import React from 'react';
 import { Note } from '../../interfaces/Notes';
 import './Chart.css';
 import { ChartBody } from './ChartBody';
-import { ChartStyleProps, Points } from '../../interfaces/SVG';
+import { ChartStyleProps, Points } from '../../interfaces/Chart';
 import { ChartHelper } from '../../app/chartHelper';
 
 export interface ChartProps {

@@ -11,6 +11,9 @@ import uuidv1 from 'uuid';
 import { NotesHelper } from '../../app/notesHelper';
 import { Chart } from '../../components/chart/Chart';
 import { ChartColor } from '../../constants/Colors';
+import { RangeSelection } from '../../components/range-selection/RangeSelection';
+import { selectSectionWithDirection } from '../../store/actions/chart';
+import { SelectSectionDirectionType } from '../../interfaces/Chart';
 
 export interface UserDataDisplayBlockComponentState {
     glucose: string;
@@ -23,10 +26,12 @@ export interface UserDataDisplayBlockComponentProps {
     selected: string,
     isEditingMode: boolean,
     user?: any,
+    sectionValue: Date,
     updateNotes: (notes: Note[]) => void,
     selectNote: (id: string) => void,
     changeInputsMode: () => void,
     deleteNote: (id: string) => void,
+    selectSection: (direction: SelectSectionDirectionType) => void;
 }
 
 export class UserDataDisplayBlockComponent extends React.Component
@@ -54,9 +59,9 @@ export class UserDataDisplayBlockComponent extends React.Component
   }
 
   render() {
-    const { notes, selected, selectNote, isEditingMode } = this.props;
+    const { notes, selected, selectNote, isEditingMode, sectionValue, selectSection } = this.props;
     return <div className={'user-data-display-block-component'}>
-      <div className={'user-data-display-block-component_high-row'}>
+      <div className={'user-data-display-block-component__high-row'}>
         <UserInputBlock
           parentState={this.state}
           onGlucoseInputValueChange={this.onGlucoseInputValueChange}
@@ -74,6 +79,7 @@ export class UserDataDisplayBlockComponent extends React.Component
             onDeleteClick={this.onDeleteClick}
         />
       </div>
+      <RangeSelection sectionValue={sectionValue} onSelectAnotherSectionValue={selectSection}/>
       <Chart
           chartStyleProps={{
               axiosStroke: ChartColor.AXIS,
@@ -183,11 +189,11 @@ export class UserDataDisplayBlockComponent extends React.Component
   }
 }
 const mapStateToProps = (store: IState) => {
-    (store)
     return {
         notes: store.list.notes,
         selected: store.list.selected,
-        isEditingMode: store.list.isEditingMode
+        isEditingMode: store.list.isEditingMode,
+        sectionValue: store.chart.sectionValue,
     }
 }
 
@@ -197,6 +203,7 @@ const mapDispatchToProps = (dispatch: DispatchWithPayload<ActionWithPayLoad>) =>
     selectNote: (id: string) => dispatch(selectNote(id)),
     deleteNote: (id: string) => dispatch(deleteNote(id)),
     changeInputsMode: () => dispatch(changeInputsMode()),
+    selectSection: (direction: SelectSectionDirectionType) => dispatch(selectSectionWithDirection(direction)),
   }
 }
 

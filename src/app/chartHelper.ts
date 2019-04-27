@@ -1,4 +1,4 @@
-import { AxisType, SvgLineProps, Points } from "../interfaces/SVG";
+import { AxisType, SvgLineProps, Points } from "../interfaces/Chart";
 import { Chart } from "../components/chart/Chart";
 import { Color } from "csstype";
 import { Note } from "../interfaces/Notes";

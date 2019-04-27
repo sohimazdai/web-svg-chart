@@ -15,7 +15,7 @@ export class NotesHelper {
         })
     }
 
-    static makeNotesArray(numberOfNotes: number, initialDate: Date, endDate: Date) {
+    static makeNotesArray (numberOfNotes: number, initialDate: Date, endDate: Date) {
         let notes: Note[] = [];
         for (let stepNumber = 0; stepNumber < numberOfNotes; stepNumber++) {
             notes.push(NotesHelper.makeRandomNote(initialDate, endDate));
@@ -24,7 +24,7 @@ export class NotesHelper {
         return notes;
     }
 
-    static makeRandomNote(initialDate: Date, endDate: Date) {
+    static makeRandomNote (initialDate: Date, endDate: Date) {
         return {
             glucose: Math.ceil(Math.random()*12).toString(),
             insulin: Math.ceil(Math.random()*12).toString(),
@@ -32,5 +32,12 @@ export class NotesHelper {
             date: DateMaker.makeRandomDate(initialDate, endDate),
             id: uuidv1(),
         }
+    }
+
+    static makeInitialDate (range?: number) {
+        if (range) {
+            return  new Date(new Date().getFullYear(), new Date().getMonth(), (new Date().getDate() - range) );
+        }
+        return new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() );
     }
 }

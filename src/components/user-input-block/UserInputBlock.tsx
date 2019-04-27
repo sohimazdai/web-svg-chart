@@ -9,9 +9,9 @@ export interface UserInputBlockProps {
     onBreadInputValueChange(value: string): void;
     onInsulinInputValueChange(value: string): void;
     onSaveClick(): void;
+    onClearAllClick: () => void;
     parentState: UserDataDisplayBlockComponentState;
     isEditingMode: boolean;
-    onClearAllClick: () => void;
 };
 
 export class UserInputBlock extends React.Component<UserInputBlockProps, any> {
@@ -30,15 +30,33 @@ export class UserInputBlock extends React.Component<UserInputBlockProps, any> {
         const saveButtonTitle = isEditingMode ? 'Save changes' : 'Press to save';
         const clearButtonTitle = 'Clear All';
 
-
-    return <div className={'user-input-block'}>
-            Glucose: <CustomUserInput inputType='number' inputValue={glucose} onChange={onGlucoseInputValueChange} />
-            Bread: <CustomUserInput inputType='number' inputValue={bread} onChange={onBreadInputValueChange}/>
-            Insulin: <CustomUserInput inputType='number' inputValue={insulin} onChange={onInsulinInputValueChange}/>
-        <div className={'user-input-block_buttons'}>
-            <CustomSubmitButton onClick={onSaveClick} buttonTitle={saveButtonTitle} />
-            <CustomSubmitButton onClick={onClearAllClick} buttonTitle={clearButtonTitle} disabled={inputsAreEmpty}/>
-        </div>
-    </div>
+        return <div className={'user-input-block'}>
+                    Glucose: <CustomUserInput
+                        inputType='number'
+                        inputValue={glucose}
+                        onChange={onGlucoseInputValueChange}
+                    />
+                    Bread: <CustomUserInput
+                        inputType='number'
+                        inputValue={bread}
+                        onChange={onBreadInputValueChange}
+                    />
+                    Insulin: <CustomUserInput
+                        inputType='number'
+                        inputValue={insulin}
+                        onChange={onInsulinInputValueChange}
+                    />
+                <div className={'user-input-block_buttons'}>
+                    <CustomSubmitButton
+                        onClick={onSaveClick}
+                        buttonTitle={saveButtonTitle}
+                    />
+                    <CustomSubmitButton
+                        onClick={onClearAllClick}
+                        buttonTitle={clearButtonTitle}
+                        disabled={inputsAreEmpty}
+                    />
+                </div>
+            </div>
   }
 }

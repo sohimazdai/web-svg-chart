@@ -3,7 +3,7 @@
     margin: 10px auto;
 }
 
-.user-data-display-block-component_high-row{
+.user-data-display-block-component__high-row{
     display: flex;
     height: 300px;
     flex-direction: row;
