@@ -1,4 +1,5 @@
 import { Note } from "../../interfaces/Notes";
+import { SectionRange } from "../../components/range-selection/RangeSelection";
 
 export interface INotesState {
     notes: Note[],
@@ -10,7 +11,14 @@ export interface IUserState {
     name: string
 }
 
+export interface IChartState {
+    section: SectionRange;
+    sectionValue: Date;
+    sectionValueStart?: Date;
+}
+
 export interface IState {
     list: INotesState,
-    user: IUserState
+    user: IUserState,
+    chart: IChartState,
 }

@@ -6,5 +6,6 @@ import { Note } from '../interfaces/Notes';
 
 const initialDate = new Date(2019, 3, 21);
 const endDate = new  Date(); //today
+const daysRange: number = 3;
 
-export const notes: Note[] = NotesHelper.makeNotesArray(10, initialDate, endDate);
+export const notes: Note[] = NotesHelper.makeNotesArray(15, NotesHelper.makeInitialDate(daysRange), endDate);
