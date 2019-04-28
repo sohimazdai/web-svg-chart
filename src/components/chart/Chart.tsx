@@ -2,11 +2,12 @@ import React from 'react';
 import { Note } from '../../interfaces/Notes';
 import './Chart.css';
 import { ChartBody } from './ChartBody';
-import { ChartStyleProps, Points } from '../../interfaces/Chart';
+import { ChartStyleProps } from '../../interfaces/Chart';
 import { ChartHelper } from '../../app/chartHelper';
 
 export interface ChartProps {
-    notes: Note[],
+    notes: Note[];
+    selectedDate: Date;
     chartStyleProps: ChartStyleProps;
     numberOfDashesOY?: number;
     numberOfDashesOX?: number;
@@ -21,15 +22,16 @@ export class Chart extends React.Component<ChartProps> {
     static viewY: number = 100 * Chart.percentOfY;
 
     render() {
-      const { chartStyleProps, numberOfDashesOY, numberOfDashesOX, notes } = this.props;
+      const { chartStyleProps, numberOfDashesOY, numberOfDashesOX, notes, selectedDate } = this.props;
       const viewBoxPropsStr = '0 0 ' + Chart.ChartX + ' ' + Chart.ChartY;
       return <div className={'chart'}>
             <svg viewBox={viewBoxPropsStr} width="100%">
                     <ChartBody
+                        selectedDate={selectedDate}
                         chartStyleProps={chartStyleProps}
                         numberOfDashesOY={numberOfDashesOY}
                         numberOfDashesOX={numberOfDashesOX}
-                        polylinePoints={ChartHelper.getPointsFromNotes(notes)}
+                        polylinePoints={ChartHelper.getPointsFromNotes(notes, selectedDate)}
                     />
             </svg>
       </div>

@@ -5,10 +5,11 @@ import { ChartColor } from '../../constants/Colors';
 import { Chart } from './Chart';
 
 export interface ChartBodyProps {
+    polylinePoints: Points;
+    selectedDate: Date;
+    chartStyleProps: ChartStyleProps;
     numberOfDashesOX?: number;
     numberOfDashesOY?: number;
-    chartStyleProps: ChartStyleProps;
-    polylinePoints: Points;
 }
 
 export class ChartBody extends React.Component<ChartBodyProps> {
@@ -38,8 +39,8 @@ export class ChartBody extends React.Component<ChartBodyProps> {
         let y: number;
         if (type == PolylineType.GLU) {
             for (var iter = 0; iter < points.glucosePoints.length; iter++) {
-                x = points.datePoints[iter];
-                y = points.glucosePoints[iter];
+                x = Math.round(points.datePoints[iter]);
+                y = Math.round(points.glucosePoints[iter]);
                 path += x + ',' + y + ' '
             }
         }
