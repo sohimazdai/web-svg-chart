@@ -19,7 +19,6 @@ export class RangeSelection extends React.Component<RangeSelectionProps, any> {
         const { sectionValue, onSelectAnotherSectionValue } = this.props;
         return (
             <div className={'range-selection'}>
-
                 <div className={'range-selection__changing-box'}>
                     <div className={'range-selection__change-range'}>
                         <select
@@ -33,6 +32,7 @@ export class RangeSelection extends React.Component<RangeSelectionProps, any> {
                     </div>
                     <div className={'range-selection__changing-section-value'}>
                         <div
+                            className={'range-selection__button'}
                             onClick={() => {
                                 onSelectAnotherSectionValue(
                                     ChartHelper.makeAnotherDateWithDirection(
@@ -48,6 +48,7 @@ export class RangeSelection extends React.Component<RangeSelectionProps, any> {
                             {sectionValue.toDateString()}
                         </div>
                         <div
+                            className={'range-selection__button'}
                             onClick={() => {
                                 onSelectAnotherSectionValue(
                                     ChartHelper.makeAnotherDateWithDirection(

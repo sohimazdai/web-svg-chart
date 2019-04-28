@@ -45,3 +45,10 @@
     /* .range-selection__section-title {
 
     } */
+
+    .range-selection__button {
+        padding: 0px 8px 4px;
+        border: 1px solid #123455;
+        border-radius: 5px;
+        background-color: #cecece;
+    }
