@@ -1,4 +1,4 @@
-import { AxisType, SvgLineProps, Points } from "../interfaces/Chart";
+import { AxisType, SvgLineProps, Points, SelectSectionDirectionType } from "../interfaces/Chart";
 import { Chart } from "../components/chart/Chart";
 import { Color } from "csstype";
 import { Note } from "../interfaces/Notes";
@@ -112,7 +112,7 @@ export class ChartHelper {
         return params;
     }
 
-    static getPointsFromNotes(notes: Note[]) {
+    static getPointsFromNotes(notes: Note[], selectedDate: Date) {
         console.log('CH NOTES', notes);
         let points: Points = {
             glucosePoints: [],
@@ -123,9 +123,9 @@ export class ChartHelper {
         for (var iter = 0; iter < notes.length; iter++) {
             points.datePoints.push(notes[iter].date.getTime());
         }
-        let todays = this.getTodayIndex(points.datePoints);
+        let dateIndexes = this.getTodayIndexes(points.datePoints, selectedDate);
         points.datePoints = [];
-        for (var iter = todays[0]; iter < todays[todays.length - 1]; iter++) {
+        for (var iter = dateIndexes[0]; iter <= dateIndexes[dateIndexes.length - 1]; iter++) {
             points.glucosePoints.push(parseFloat(notes[iter].glucose));
             points.breadPoints.push(parseFloat(notes[iter].bread));
             points.insulinPoints.push(parseFloat(notes[iter].insulin));
@@ -135,7 +135,7 @@ export class ChartHelper {
         points.glucosePoints = this.transformArrayToAdapted(points.glucosePoints);
         points.breadPoints = this.transformArrayToAdapted(points.breadPoints);
         points.insulinPoints = this.transformArrayToAdapted(points.insulinPoints);
-        points.datePoints = this.transformDateArrayToAdapted(points.datePoints);
+        points.datePoints = this.transformDateArrayToAdapted(points.datePoints, selectedDate);
         console.log('CH points', points);
         return points;
     }
@@ -149,28 +149,36 @@ export class ChartHelper {
         return adapted;
     }
 
-    static getTodayIndex(dates: number[]) {
-        let todays: number[] = [];
-        let today = new Date();
-        let start = (new Date(today.toDateString())).getTime();
-        let range = 1000 * 60 * 60 * 24;
+    static getTodayIndexes(dates: number[], selectedDate: Date) {
+        let notesOfSelectedDay: number[] = [];
+        let day = selectedDate || new Date();
+        let start = (new Date(day.toDateString())).getTime();
+        let range = 1000 * 60 * 60 * 24; //24h
         dates.map((date, index) => {
             let receivedDateInMs = (new Date(date)).getTime() - start;
             if(receivedDateInMs < range && receivedDateInMs > 0){
-                todays.push(index)
+                notesOfSelectedDay.push(index)
             }
         })
-        return todays;
+        return notesOfSelectedDay;
     }
 
-    static transformDateArrayToAdapted(dates: number[]) {
+    static transformDateArrayToAdapted(dates: number[], selectedDate: Date) {
         let adapted: number[] = [];
-        let start = (new Date(new Date().toDateString())).getTime();
+        let start = (new Date(selectedDate.toDateString())).getTime();
         let range = 1000 * 60 * 60 * 24;
         dates.map((date, index) => {
             let receivedDateInMs = (new Date(date)).getTime() - start;
-            adapted.push((receivedDateInMs / range) * 100 * Chart.percentOfX);
+            adapted.push(((receivedDateInMs / range) * 100 + ChartHelper.min) * Chart.percentOfX);
         })
         return adapted;
+    }
+
+    static makeAnotherDateWithDirection(direction: SelectSectionDirectionType, current: Date) {
+        const diff = direction == SelectSectionDirectionType.NEXT ? 1 : -1;
+        const year = current.getFullYear();
+        const month = current.getMonth() - 1;
+        const date = current.getDate();
+        return new Date(current.getFullYear(), current.getMonth(), current.getDate() + diff)
     }
 }

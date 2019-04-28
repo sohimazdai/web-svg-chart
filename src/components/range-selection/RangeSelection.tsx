@@ -1,10 +1,11 @@
 import React from 'react';
 import './RangeSelection.css';
 import { SelectSectionDirectionType } from '../../interfaces/Chart';
+import { ChartHelper } from '../../app/chartHelper';
 
 export interface RangeSelectionProps {
     sectionValue: Date;
-    onSelectAnotherSectionValue: (direction: SelectSectionDirectionType) => void
+    onSelectAnotherSectionValue: (date: Date) => void
 };
 
 export enum SectionRange {
@@ -31,16 +32,35 @@ export class RangeSelection extends React.Component<RangeSelectionProps, any> {
                         </select>
                     </div>
                     <div className={'range-selection__changing-section-value'}>
-                        <div onClick={() => onSelectAnotherSectionValue(SelectSectionDirectionType.PREVIOUS)}>
+                        <div
+                            onClick={() => {
+                                onSelectAnotherSectionValue(
+                                    ChartHelper.makeAnotherDateWithDirection(
+                                        SelectSectionDirectionType.PREVIOUS,
+                                        sectionValue
+                                    )
+                                )
+                            }
+                        }>
                             {'<'}
                         </div>
                         <div className={'range-selection__section-title'}>
                             {sectionValue.toDateString()}
                         </div>
-                        <div onClick={() => onSelectAnotherSectionValue(SelectSectionDirectionType.NEXT)}>
+                        <div
+                            onClick={() => {
+                                onSelectAnotherSectionValue(
+                                    ChartHelper.makeAnotherDateWithDirection(
+                                        SelectSectionDirectionType.NEXT,
+                                        sectionValue
+                                    )
+                                )
+                            }
+                        }>
                             {'>'}
                         </div>
                     </div>
+
                 </div>
             </div>
         );

@@ -31,7 +31,7 @@ export interface UserDataDisplayBlockComponentProps {
     selectNote: (id: string) => void,
     changeInputsMode: () => void,
     deleteNote: (id: string) => void,
-    selectSection: (direction: SelectSectionDirectionType) => void;
+    selectSection: (date: Date) => void;
 }
 
 export class UserDataDisplayBlockComponent extends React.Component
@@ -90,6 +90,7 @@ export class UserDataDisplayBlockComponent extends React.Component
               netStrokeWidth: 1,
           }}
           notes={notes}
+          selectedDate={sectionValue}
           numberOfDashesOY={12}
           numberOfDashesOX={12}
       />
@@ -203,7 +204,7 @@ const mapDispatchToProps = (dispatch: DispatchWithPayload<ActionWithPayLoad>) =>
     selectNote: (id: string) => dispatch(selectNote(id)),
     deleteNote: (id: string) => dispatch(deleteNote(id)),
     changeInputsMode: () => dispatch(changeInputsMode()),
-    selectSection: (direction: SelectSectionDirectionType) => dispatch(selectSectionWithDirection(direction)),
+    selectSection: (date: Date) => dispatch(selectSectionWithDirection(date)),
   }
 }
 
