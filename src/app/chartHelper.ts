@@ -113,40 +113,46 @@ export class ChartHelper {
     }
 
     static getPointsFromNotes(notes: Note[], selectedDate: Date) {
-        console.log('CH NOTES', notes);
         let points: Points = {
             glucosePoints: [],
             breadPoints: [],
             insulinPoints: [],
-            datePoints: []
+            datePoints: [],
+            glucoseValues: [],
+            breadValues: [],
+            insulinValues: [],
+            dateValues: [],
         }
         for (var iter = 0; iter < notes.length; iter++) {
-            points.datePoints.push(notes[iter].date.getTime());
+            points.dateValues.push(notes[iter].date.getTime());
         }
-        let dateIndexes = this.getTodayIndexes(points.datePoints, selectedDate);
-        points.datePoints = [];
+        let dateIndexes = this.getTodayIndexes(points.dateValues, selectedDate);
+        points.dateValues = [];
         for (var iter = dateIndexes[0]; iter <= dateIndexes[dateIndexes.length - 1]; iter++) {
-            points.glucosePoints.push(parseFloat(notes[iter].glucose));
-            points.breadPoints.push(parseFloat(notes[iter].bread));
-            points.insulinPoints.push(parseFloat(notes[iter].insulin));
-            points.datePoints.push(notes[iter].date.getTime());
+            points.glucoseValues.push(parseFloat(notes[iter].glucose));
+            points.breadValues.push(parseFloat(notes[iter].bread));
+            points.insulinValues.push(parseFloat(notes[iter].insulin));
+            points.dateValues.push(notes[iter].date.getTime());
         }
 
-        points.glucosePoints = this.transformArrayToAdapted(points.glucosePoints);
-        points.breadPoints = this.transformArrayToAdapted(points.breadPoints);
-        points.insulinPoints = this.transformArrayToAdapted(points.insulinPoints);
-        points.datePoints = this.transformDateArrayToAdapted(points.datePoints, selectedDate);
-        console.log('CH points', points);
+        points.glucosePoints = this.transformArrayToAdapted(points.glucoseValues);
+        points.breadPoints = this.transformArrayToAdapted(points.breadValues);
+        points.insulinPoints = this.transformArrayToAdapted(points.insulinValues);
+        points.datePoints = this.transformDateArrayToAdapted(points.dateValues, selectedDate);
         return points;
     }
 
     static transformArrayToAdapted(array: number[]) {
         let adapted: number[] = [];
-        let max = Math.max.apply(null, array) + 1;
+        let max = ChartHelper.getMaxArrayValue(array)
         array.map((item, index) => {
             adapted[index] = (100 - item/max * 100 + this.min) * Chart.percentOfY;
         })
         return adapted;
+    }
+
+    static getMaxArrayValue( array: number[] ) {
+        return Math.max.apply(null, array)
     }
 
     static getTodayIndexes(dates: number[], selectedDate: Date) {
