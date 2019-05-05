@@ -40,6 +40,10 @@ export interface Points {
     breadPoints: number[],
     insulinPoints: number[],
     datePoints: number[],
+    glucoseValues: number[],
+    breadValues: number[],
+    insulinValues: number[],
+    dateValues: number[],
 }
 
 export enum PolylineType {

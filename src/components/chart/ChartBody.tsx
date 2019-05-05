@@ -44,7 +44,6 @@ export class ChartBody extends React.Component<ChartBodyProps> {
                 path += x + ',' + y + ' '
             }
         }
-        console.log(path)
         return <polyline id={PolylineType.GLU} points={path} stroke="tomato" strokeWidth="5" fill="none" />
     }
 
